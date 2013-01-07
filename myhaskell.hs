@@ -1,7 +1,14 @@
+--ch 02
+
+
 lastButOne :: [a] -> Maybe a
 lastButOne [x,_] = Just x
 lastButOne (_:x:ys) = lastButOne (x:ys)
 lastButOne _ = Nothing
+
+
+--ch 03
+
 
 myLength :: [a] -> Integer
 myLength (x:xs) = 1 + myLength(xs)
@@ -16,10 +23,9 @@ palindrome :: [a] -> [a]
 palindrome [] = []
 palindrome xs = xs ++ (reverse xs)
 
---isPalindrome :: Num [a] -> Bool
+isPalindrome :: [a] -> Bool   
 isPalindrome [] = False
 isPalindrome [_] = True
-isPalindrome (x:xs) = let y = (last xs)
-                            in if x /= y 
-                               then False
-                               else isPalindrome (init xs)
+isPalindrome (x:xs) = if x /= (last xs)
+					  then False
+					  else isPalindrome(init xs)
