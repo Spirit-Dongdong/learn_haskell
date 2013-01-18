@@ -62,3 +62,41 @@ sortByLength xs = sortBy compareLength xs
 --intersperse :: a -> [[a]] -> [a]
 --8. The separator should appear between elements of the list, but it should not follow
 --the last element. Your function should behave as follows:
+
+
+--10. Consider three two-dimensional points, a, b, and c. If we look at the angle formed
+--by the line segment from a to b and the line segment from b to c, it turns left, turns
+--right, or forms a straight line. Define a Direction data type that lets you represent
+--these possibilities.
+data Vector = Vector Float Float
+			| MyVector Point Point
+               deriving (Eq, Show)
+
+getx (Vector x _ ) = x
+gety (Vector _ y ) = y
+getx (MyVector m n) = (fst n) - (fst m) 
+gety (Vector _ y ) = (snd n) - (snd m)
+
+data Direction = Left 
+			   | Right 
+			   | Straight 
+			deriving Show
+
+--rotate angle 
+vectorRotateAngle :: Vector -> Vector -> Float
+vectorRotateAngle v1 v2 = ((getx v1)*(gety v2) - (gety v1)*(getx v2)) / distance v1 v2
+
+
+--turnDirection :: Point -> Point -> Point -> Direction
+--turnDirection (x,_) (m,_) (p,_) = if p 
+--11. Write a function that calculates the turn made by three two-dimensional points
+--and returns a Direction.
+--12. Define a function that takes a list of two-dimensional points and computes the
+--direction of each successive triple. Given a list of points [a,b,c,d,e], it should
+--begin by computing the turn made by [a,b,c], then the turn made by [b,c,d],
+--then [c,d,e]. Your function should return a list of Direction.
+--13. Using the code from the preceding three exercises, implement Graham’s scan al-
+--gorithm for the convex hull of a set of 2D points. You can find good description
+--of what a convex hull (http://en.wikipedia.org/wiki/Convex_hull) is, and how the
+--Graham scan algorithm (http://en.wikipedia.org/wiki/Graham_scan) should work,
+--on Wikipedia (http://en.wikipedia.org/).
